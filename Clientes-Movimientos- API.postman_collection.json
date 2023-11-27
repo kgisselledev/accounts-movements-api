@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "60b0972a-3590-45e4-bc82-dc93886d1c0d",
+		"name": "Clientes-Movimientos- API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15265226"
+	},
+	"item": [
+		{
+			"name": "Cliente - POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Test\",\r\n  \"genero\": \"femenino\",\r\n  \"edad\": 28,\r\n  \"identificacion\": \"100006\",\r\n  \"direccion\": \"Bogota\",\r\n  \"telefono\": \"54573\",\r\n  \"contraseña\": \"21545\",\r\n  \"estado\": \"activa\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercliente}}:{{portcliente}}/api/{{clientes}}",
+					"protocol": "http",
+					"host": [
+						"{{servercliente}}"
+					],
+					"port": "{{portcliente}}",
+					"path": [
+						"api",
+						"{{clientes}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercliente}}:{{portcliente}}/api/{{clientes}}/1",
+					"protocol": "http",
+					"host": [
+						"{{servercliente}}"
+					],
+					"port": "{{portcliente}}",
+					"path": [
+						"api",
+						"{{clientes}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clientes - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercliente}}:{{portcliente}}/api/{{clientes}}",
+					"protocol": "http",
+					"host": [
+						"{{servercliente}}"
+					],
+					"port": "{{portcliente}}",
+					"path": [
+						"api",
+						"{{clientes}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente - PUT",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Luna\",\r\n  \"genero\": \"femmenino\",\r\n  \"edad\": 25,\r\n  \"identificacion\": \"0000000\",\r\n  \"direccion\": \"Calle Falsa 124\",\r\n  \"telefono\": \"555-5555\",\r\n  \"contraseña\": \"loca\",\r\n  \"estado\": \"inactiva\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercliente}}:{{portcliente}}/api/{{clientes}}/1",
+					"protocol": "http",
+					"host": [
+						"{{servercliente}}"
+					],
+					"port": "{{portcliente}}",
+					"path": [
+						"api",
+						"{{clientes}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cliente - DEL",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercliente}}:{{portcliente}}/api/{{clientes}}/6",
+					"protocol": "http",
+					"host": [
+						"{{servercliente}}"
+					],
+					"port": "{{portcliente}}",
+					"path": [
+						"api",
+						"{{clientes}}",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta - POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCuenta\": \"100005\",\r\n  \"tipoCuenta\": \"Ahorros\",\r\n  \"saldoInicial\": 0,\r\n  \"saldoActual\": 0,\r\n  \"estado\": \"Activo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{cuentas}}",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{cuentas}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{cuentas}}/1",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{cuentas}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuentas - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{cuentas}}",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{cuentas}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta - PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCuenta\": \"495878\",\r\n  \"tipoCuenta\": \"Ahorro\",\r\n  \"saldoInicial\": 150,\r\n  \"saldoActual\": 150,\r\n  \"estado\": \"Activo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{cuentas}}/2",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{cuentas}}",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cuenta - DEL",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cliente_Id\": \"124563\",\r\n  \"numeroCuenta\": \"123456789\",\r\n  \"tipoCuenta\": \"Corriente\",\r\n  \"saldoInicial\": 1000.00,\r\n  \"estado\": \"Activa\",\r\n  \"movimientos\": [\r\n    {\r\n      \"tipoMovimiento\": \"DEPOSITO\",\r\n      \"valor\": 500.00\r\n    },\r\n    {\r\n      \"tipoMovimiento\": \"RETIRO\",\r\n      \"valor\": 200.00\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{cuentas}}/4",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{cuentas}}",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento - POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n  \"idCuenta\": 7,\r\n  \"fecha\": \"2023-11-30\",\r\n  \"tipoMovimiento\": \"Ahorro\",\r\n  \"cuenta\":\"100005\",\r\n  \"valor\": 500,\r\n  \"saldo\": 500,\r\n  \"monto\": 500\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{movimientos}}",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{movimientos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimientos - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{movimientos}}",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{movimientos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{movimientos}}/1",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{movimientos}}",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento - PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n  \"fecha\": \"2023-11-25T12:30:00\",\r\n  \"tipoMovimiento\": \"Credito\",\r\n  \"valor\": 2000,\r\n  \"saldo\": 9000,\r\n  \"monto\": 2000\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{movimientos}}/16",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{movimientos}}",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movimiento - DEL",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cliente_Id\": \"124563\",\r\n  \"numeroCuenta\": \"123456789\",\r\n  \"tipoCuenta\": \"Corriente\",\r\n  \"saldoInicial\": 1000.00,\r\n  \"estado\": \"Activa\",\r\n  \"movimientos\": [\r\n    {\r\n      \"tipoMovimiento\": \"DEPOSITO\",\r\n      \"valor\": 500.00\r\n    },\r\n    {\r\n      \"tipoMovimiento\": \"RETIRO\",\r\n      \"valor\": 200.00\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{movimientos}}/3",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{movimientos}}",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reportes - GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{servercuenta}}:{{portmov}}/api/{{reportes}}?fechaInicio=2023-11-01&fechaFin=2023-11-28",
+					"protocol": "http",
+					"host": [
+						"{{servercuenta}}"
+					],
+					"port": "{{portmov}}",
+					"path": [
+						"api",
+						"{{reportes}}"
+					],
+					"query": [
+						{
+							"key": "fechaInicio",
+							"value": "2023-11-01"
+						},
+						{
+							"key": "fechaFin",
+							"value": "2023-11-28"
+						},
+						{
+							"key": "nombreCliente",
+							"value": "null",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "servercuenta",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "portmov",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "cuentas",
+			"value": "cuentas",
+			"type": "string"
+		},
+		{
+			"key": "servercliente",
+			"value": "localhost",
+			"type": "string"
+		},
+		{
+			"key": "portcliente",
+			"value": "8081",
+			"type": "string"
+		},
+		{
+			"key": "clientes",
+			"value": "clientes",
+			"type": "string"
+		},
+		{
+			"key": "movimientos",
+			"value": "movimientos",
+			"type": "string"
+		},
+		{
+			"key": "reportes",
+			"value": "reportes",
+			"type": "string"
+		},
+		{
+			"key": "movimiento",
+			"value": "movimiento",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "cuentas",
+			"value": "cuentas",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
