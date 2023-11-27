@@ -7,7 +7,7 @@ con JUnit y Mockito, consumidor RabbitMQ y build Maven.
 # Instalacion
 Seguir los siguientes pasos para la instalacion y compilacion del proyecto:
 
-1. Clonar el repositorio con el comando: git clone https://github.com/kgisselledev/api-usuarios-java-sp.git](https://github.com/kgisselledev/accounts-movements-api
+1. Clonar el repositorio con el comando: git clone https://github.com/kgisselledev/accounts-movements-api
 2. Acceder al directorio con: cd accounts-movements-api
 3. Compilar el proyecto con la consola en Maven: mvn clean install
 4. Compilar el proyecto con mvn spring-boot:run
