@@ -1,25 +1,31 @@
 package com.movementssapi.accounts.service;
 
-import com.movementssapi.accounts.dto.ReporteEstCuentaDTO;
-import com.movementssapi.accounts.model.Cuenta;
-import com.movementssapi.accounts.model.Movimiento;
 
+import com.movementssapi.accounts.dto.ResponseDTO;
+import com.movementssapi.accounts.model.Cuenta;
+
+
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface CuentaService {
-    Cuenta saveCuenta(Cuenta cuentaSave);
+    Cuenta crearCuenta(Cuenta cuentaSave);
 
-    Cuenta getCuentaById(Long Id);
+    boolean existeCuentaPorId(Integer id);
+
+    Optional<Cuenta> obtenerCuentaPorId(Integer id);
 
     List<Cuenta> getAllCuentas();
 
-    Cuenta updateCuenta(Long Id, Cuenta cuentaDetails);
+    Optional<Cuenta> obtenerCuentaPorNumero(String numeroCuenta);
 
-    void deleteCuenta(Long Id);
+    Cuenta updateCuenta(Cuenta cuenta);
 
-    void actualizarCuenta(Cuenta cuenta);
+    void eliminarCuenta(Integer id);
 
-    ReporteEstCuentaDTO construirReporte(List<Cuenta> cuentas, List<Movimiento> movimientos);
+    List<Cuenta> getCuentasPorCliente(Integer clienteId);
 
-    List<Cuenta> getCuentasPorCliente(Long Id);
+    ResponseDTO getClientebyId(Integer id);
+
 }

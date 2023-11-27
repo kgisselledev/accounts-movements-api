@@ -1,20 +1,19 @@
 package com.movementssapi.accounts.service;
 
-import com.movementssapi.accounts.dto.CuentaDTO;
-import com.movementssapi.accounts.dto.MovimientoDTO;
-import com.movementssapi.accounts.dto.ReporteEstCuentaDTO;
+import com.movementssapi.accounts.dto.ClienteDTO;
+import com.movementssapi.accounts.dto.ResponseDTO;
 import com.movementssapi.accounts.model.Cuenta;
-import com.movementssapi.accounts.model.Movimiento;
 import com.movementssapi.accounts.repository.CuentaRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.movementssapi.accounts.repository.MovimientoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class CuentaServiceImpl implements CuentaService {
@@ -22,28 +21,34 @@ public class CuentaServiceImpl implements CuentaService {
     @Autowired
     private CuentaRepository cuentaRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(CuentaServiceImpl.class);
+    @Autowired
+    private MovimientoRepository movimientoRepository;
+
+    private final RestTemplate restTemplate;
+
+    public CuentaServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
 
     @Override
-    public Cuenta saveCuenta(Cuenta cuentaSave) {
-        Cuenta cuentasa = new Cuenta();
-        cuentasa.setId(cuentaSave.getId());
-        cuentasa.setNombre_cliente(cuentaSave.getNombre_cliente());
-        cuentasa.setTipoCuenta(cuentaSave.getTipoCuenta());
-        cuentasa.setNumeroCuenta(cuentaSave.getNumeroCuenta());
-        cuentasa.setEstado(cuentaSave.getEstado());
+    public Cuenta crearCuenta(Cuenta cuentaSave) {
 
-        logger.info("Creando cuenta: ", cuentaSave);
-        // Puedes realizar validaciones u operaciones adicionales antes de guardar
         return cuentaRepository.save(cuentaSave);
     }
 
     @Override
-    public Cuenta getCuentaById(Long Id) {
-        logger.info("Buscando cuenta con ID: {}", Id);
-        return cuentaRepository.findById(Id)
-                .orElseThrow(() -> new EntityNotFoundException("Cuenta no encontrada con ID: " + Id));
+    public Optional<Cuenta> obtenerCuentaPorNumero(String numeroCuenta) {
+        return cuentaRepository.findByNumeroCuenta(numeroCuenta);
+    }
+
+    @Override
+    public boolean existeCuentaPorId(Integer id) {
+        return cuentaRepository.existsById(id);
+    }
+    @Override
+    public Optional<Cuenta> obtenerCuentaPorId(Integer id) {
+        return cuentaRepository.findById(id);
     }
 
     @Override
@@ -52,70 +57,37 @@ public class CuentaServiceImpl implements CuentaService {
     }
 
     @Override
-    public Cuenta updateCuenta(Long Id, Cuenta cuentaDetails) {
-        Cuenta cuenta = getCuentaById(Id);
-
-        // Actualiza los campos necesarios
-        cuenta.setNumeroCuenta(cuentaDetails.getNumeroCuenta());
-        cuenta.setTipoCuenta(cuentaDetails.getTipoCuenta());
-        cuenta.setSaldoInicial(cuentaDetails.getSaldoInicial());
-        cuenta.setEstado(cuentaDetails.getEstado());
-
-        // Puedes realizar más validaciones u operaciones antes de guardar la actualización
-
+    public Cuenta updateCuenta(Cuenta cuenta) {
         return cuentaRepository.save(cuenta);
     }
 
-    public void actualizarCuenta(Cuenta cuenta) {
-        cuentaRepository.save(cuenta);
+    @Override
+    public void eliminarCuenta(Integer id) {
+        cuentaRepository.deleteById(id);
     }
 
     @Override
-    public ReporteEstCuentaDTO construirReporte(List<Cuenta> cuentas, List<Movimiento> movimientos) {
-        ReporteEstCuentaDTO reporte = new ReporteEstCuentaDTO();
-        List<CuentaDTO> cuentasDTO = new ArrayList<>();
-
-        for (Cuenta cuenta : cuentas) {
-            CuentaDTO cuentaDTO = new CuentaDTO();
-            cuentaDTO.setId(cuenta.getId());
-            cuentaDTO.setNumeroCuenta(cuenta.getNumeroCuenta());
-            cuentaDTO.setSaldo(cuenta.getSaldoInicial());
-
-            // Filtrar los movimientos correspondientes a esta cuenta
-            List<Movimiento> movimientosCuenta = movimientos.stream()
-                    .filter(m -> m.getCuenta().getId().equals(cuenta.getId()))
-                    .collect(Collectors.toList());
-
-            List<MovimientoDTO> movimientosDTO = new ArrayList<>();
-
-            for (Movimiento movimiento : movimientosCuenta) {
-
-                MovimientoDTO movimientoDTO = new MovimientoDTO();
-                movimientoDTO.setFecha(movimiento.getFecha());
-                movimientoDTO.setTipoMovimiento(String.valueOf(movimiento.getTipoMovimiento()));
-                movimientoDTO.setValor(movimiento.getValor());
-                movimientoDTO.setSaldo(movimiento.getSaldo());
-
-                movimientosDTO.add(movimientoDTO);
-            }
-
-            cuentaDTO.setMovimientos(movimientosDTO);
-            cuentasDTO.add(cuentaDTO);
-        }
-
-        reporte.setCuentas(cuentasDTO);
-        return reporte;
+    public List<Cuenta> getCuentasPorCliente(Integer clienteId) {
+        return cuentaRepository.findAll();
     }
 
     @Override
-    public List<Cuenta> getCuentasPorCliente(Long Id) {
-        return cuentaRepository.findByClienteId(Id);
+    public ResponseDTO getClientebyId(Integer id){
+        ResponseDTO responseDTO = new ResponseDTO();
+        Cuenta cuenta = new Cuenta();
+
+        cuenta = cuentaRepository.findById(id).get();
+
+        ResponseEntity<ClienteDTO> responseEntity = restTemplate.getForEntity("http://localhost:8081/api/clientes/" + cuenta.getId(),
+                ClienteDTO.class);
+
+        ClienteDTO clienteDTO = responseEntity.getBody();
+        responseDTO.setCuenta(cuenta);
+        responseDTO.setCliente(clienteDTO);
+
+        return responseDTO;
+
     }
 
-    @Override
-    public void deleteCuenta(Long Id) {
-        Cuenta cuenta = getCuentaById(Id);
-        cuentaRepository.delete(cuenta);
-    }
 }
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovimientoResponse {
-    private boolean exitoso;
+public class SaldoInsResponse {
     private String mensaje;
+
 }

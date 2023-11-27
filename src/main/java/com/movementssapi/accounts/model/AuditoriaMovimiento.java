@@ -4,30 +4,33 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "movimientos")
 @Data
+@Table(name = "auditoria_movimientos")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Movimiento {
-
+public class AuditoriaMovimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
+
+    @Column(name = "id_cuenta")
+    private Integer idCuenta;
     @Column(name = "fecha")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecha;
+
     @Column(name = "tipo_movimiento")
-    private String  tipoMovimiento;
-    @Column(name = "valor")
-    private BigDecimal valor;
-    @Column(name = "saldo")
-    private BigDecimal saldo;
+    private String tipoMovimiento;
+
+    private BigDecimal monto;
+
+    @Column(name = "saldo_actual")
+    private BigDecimal saldoActual;
+
 
 }

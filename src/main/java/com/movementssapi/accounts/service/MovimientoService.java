@@ -1,23 +1,28 @@
 package com.movementssapi.accounts.service;
 
-import com.movementssapi.accounts.model.Cuenta;
+import com.movementssapi.accounts.dto.MovimientoDTO;
 import com.movementssapi.accounts.model.Movimiento;
-import com.movementssapi.accounts.response.MovimientoResponse;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface MovimientoService {
-    MovimientoResponse saveMovimiento(Movimiento movimiento);
 
-    Movimiento getMovimientoById(Long Id);
+    Movimiento crearMovimiento(Movimiento movimiento);
 
     List<Movimiento> getAllMovimientos();
 
-    Movimiento updateMovimiento(Long Id, Movimiento movimientoDetails);
+    Optional<Movimiento> obtenerMovimientoPorId(Integer id);
 
-    void deleteMovimiento(Long Id);
+    boolean existeMovimientoPorId(Integer id);
 
-    List<Movimiento> getMovimientosPorClienteYFecha(Long Id, Date fechaInicio, Date fechaFin);
+    Movimiento updateMovimiento(Movimiento movimiento);
+
+    void deleteMovimiento(Integer id);
+
+    Movimiento realizarMovimiento(Integer idCuenta, BigDecimal monto, String tipoMovimiento, MovimientoDTO movimientoRes, LocalDate fecha);
+
+    List<Movimiento> obtenerMovimientosEnRangoDeFechas(LocalDate fechaInicio, LocalDate fechaFin);
 }

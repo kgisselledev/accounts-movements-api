@@ -1,15 +1,15 @@
 package com.movementssapi.accounts.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity(name ="cuenta")
+@Entity
+@Table(name ="cuentas")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,12 +17,7 @@ public class Cuenta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    @ManyToOne
-    @Column(name = "cliente_id") // nombre de la columna que representa la relación
-    private String cliente;
-    @Column(name = "nombre_cliente")
-    private String nombre_cliente;
+    private Integer Id;
     @Column(name = "numero_cuenta")
     private String numeroCuenta;
     @Column(name = "tipo_cuenta")
@@ -31,7 +26,7 @@ public class Cuenta {
     private BigDecimal saldoInicial;
     @Column(name = "estado")
     private String estado;
-    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
-    private List<Movimiento> movimientos = new ArrayList<>();
+    @Column(name = "saldo_actual")
+    private BigDecimal saldoActual;
 
 }

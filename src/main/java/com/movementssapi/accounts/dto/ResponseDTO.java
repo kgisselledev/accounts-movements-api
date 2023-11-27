@@ -1,16 +1,14 @@
 package com.movementssapi.accounts.dto;
 
-
+import com.movementssapi.accounts.model.Cuenta;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReporteEstCuentaDTO {
-
-    private List<CuentaDTO> cuentas;
-
+public class ResponseDTO {
+    private Cuenta cuenta;
+    private ClienteDTO cliente;
 }
